@@ -1,6 +1,7 @@
 package practise;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Arc2D;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -31,7 +32,20 @@ class TalkingClock
 
     public void start()
     {
-        ActionListener listener = new TimePrinter();
+        //ActionListener listener = new TimePrinter();
+        //or
+        //ActionListener listener = this.new TimePrinter();
+        //we can use anonymous inner class
+        ActionListener listener = new ActionListener() {
+            @Override //this can be inogred
+            public void actionPerformed(ActionEvent e) {
+                Date now = new Date();
+                System.out.println("At the tone, the time is " + now);
+                System.out.println(Double.MAX_VALUE);
+                System.out.println(Double.MIN_VALUE);
+                if(TalkingClock.this.beep) Toolkit.getDefaultToolkit().beep();
+            }
+        };
         Timer t = new Timer(interval, listener);
         t.start();
     }
@@ -42,7 +56,8 @@ class TalkingClock
         {
             Date now = new Date();
             System.out.println("At the tone, the time is " + now);
-            if(beep) Toolkit.getDefaultToolkit().beep();
+
+            if(TalkingClock.this.beep) Toolkit.getDefaultToolkit().beep();
         }
     }
 }

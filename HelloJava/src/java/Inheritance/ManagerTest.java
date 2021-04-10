@@ -17,6 +17,12 @@ public class ManagerTest {
         for (Employee e: staff)
         {
             System.out.println("name=" + e.getName() + ", salary=" + e.getSalary());
+
+            if (e instanceof Manager)
+            {
+                System.out.println("name=" + e.getName() + "is a manager");
+            }
         }
+
     }
 }

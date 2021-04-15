@@ -1,4 +1,8 @@
 package practise;
+import Inheritance.Manager;
+import abstractClasses.*;
+
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -23,6 +27,33 @@ public class EnumTest {
             System.out.println("size hashcode is " + size.hashCode() + "Size.SMALL hashcode is" +
             Size.SMALL.hashCode());
         }
+
+        Manager boss = new Manager(" Leslie Li ", 80000, 1987, 12, 15);
+        boss.setBonus(50000);
+
+        System.out.println(boss.getClass().getName() + " " + boss.getName());
+        String className = "java.util.Date";
+        //Class c1 = Class.forName(className);
+        try
+        {
+            Object m = Class.forName(className).newInstance();
+            Class c1 = boss.getClass();
+            Field f = c1.getDeclaredField("bonus");
+            f.setAccessible(true);
+            Object v = f.get(boss);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Class.forName exception");
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
 
     }
 
